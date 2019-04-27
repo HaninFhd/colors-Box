@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>colors Box</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>colors Box</h1>
+
+    <h2>Choose Grid Size</h2>
+    <form id="sizePicker" onsubmit="myFunction(event)">
+        Grid Height:
+        <input type="number" id="inputHeight" name="height" min="1" value="1">
+        Grid Width:
+        <input type="number" id="inputWeight" name="width" min="1" value="1">
+        <input type="submit">
+	
+    </form>
+
+    <h2>Pick A Color</h2>
+    <input type="color" id="colorPicker">
+
+    <h2>Design Canvas</h2>
+    <table id="pixelCanvas">
+	<tr id="myRow">
+	</tr>
+	</table>
+
+    <script>
+	
+  function myFunction(event) {
+    event.preventDefault();
+	 // document.getElementById("sizePicker").addEventListener("click", function(event){
+	
+	  let table = document.getElementById("pixelCanvas").innerHTML="";
+	 
+	  let height = document.getElementById("inputHeight").value;
+	  let weight = document.getElementById("inputWeight").value;
+	  //let row = table.insertRow(height);
+	  //let cell = row.insertCell(1);
+	  let i;
+	  let j;
+	  for (i = 0; i < height; i++) {
+	 
+	    var x = document.createElement("TR");
+		
+		 document.getElementById("pixelCanvas").appendChild(x);
+	   
+	   for(j = 0; j < weight; j++){
+		 
+		  var y = document.createElement("TD");
+		  var t = document.createTextNode("new cell");
+		  y.appendChild(t);
+		  x.appendChild(y);
+		
+		y.addEventListener("click", function(event){
+			// Here, `this` refers to the element the event was hooked on
+			console.log("clicked");
+			let color = document.getElementById("colorPicker").value;
+		
+			this.style.backgroundColor = color;
+		});
+	   }
+	  }
+	
+	document.getElementById("sizePicker").reset();
+	}
+
+	</script>
+</body>
+</html>
